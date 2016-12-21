@@ -4,6 +4,10 @@
 - name: Include OS-specific variables
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: Include release specific variables
+  include_vars: "{{ ansible_distribution_release }}.yml"
+  when: ansible_distribution == 'Ubuntu'
+
 - include: Ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
 

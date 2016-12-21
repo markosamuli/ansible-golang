@@ -9,6 +9,5 @@
 
 - name: Ubuntu | Install Golang tools
   package: 
-    name: "{{ item }}"
-  with_items: "{{ golang_tools_packages }}"
-  when: golang_tools_packages | default(False)
+    name: "{{ golang_tools_package }}"
+  when: golang_tools_package | default(False)
