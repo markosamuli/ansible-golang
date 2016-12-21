@@ -1,0 +1,51 @@
+---
+
+- name: Set local paths
+  set_fact:
+    local_home: "{{ lookup('env','HOME') }}"
+  become: False
+
+- name: Create golang projects directory
+  file:
+    path: "{{ local_home }}/{{ golang_path }}"
+    state: directory
+    recurse: yes
+  become: False
+
+- name: Test if $HOME/.zshrc exists
+  stat: path="{{ local_home }}/.zshrc" 
+  register: zshrc_stat
+  become: False
+
+- name: Add GOPATH to $HOME/.zshrc
+  lineinfile: 
+    dest: "{{ local_home }}/.zshrc" 
+    line: "export GOPATH=$HOME/{{ golang_path }}"
+  become: False
+  when: zshrc_stat.stat.exists == True
+
+- name: Add $GOPATH/bin to PATH in $HOME/.zshrc
+  lineinfile: 
+    dest: "{{ local_home }}/.zshrc" 
+    line: "export PATH=$PATH:$GOPATH/bin"
+  become: False
+  when: zshrc_stat.stat.exists == True 
+
+- name: Test if $HOME/.bashrc exists
+  stat: path="{{ local_home }}/.bashrc" 
+  register: bashrc_stat
+  become: False
+
+- name: Add GOPATH to $HOME/.bashrc
+  lineinfile: 
+    dest: "{{ local_home }}/.bashrc" 
+    line: "export GOPATH=$HOME/{{ golang_path }}"
+  become: False
+  when: bashrc_stat.stat.exists == True
+
+- name: Add $GOPATH/bin to PATH in $HOME/.bashrc
+  lineinfile: 
+    dest: "{{ local_home }}/.bashrc" 
+    line: "export PATH=$PATH:$GOPATH/bin"
+  become: False
+  when: bashrc_stat.stat.exists == True 

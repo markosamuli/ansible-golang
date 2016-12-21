@@ -1,0 +1,4 @@
+---
+
+- name: Ubuntu | Add golang repository
+  apt_repository: repo='ppa:ubuntu-lxc/lxd-stable'

@@ -1,0 +1,10 @@
+---
+# tasks file for ansible-golang
+
+- include: Ubuntu.yml
+  when: is_ubuntu
+
+- include: packages.yml
+
+- include: gopath.yml
+  when: golang_path | default(False)

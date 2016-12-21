@@ -1,0 +1,10 @@
+---
+
+- name: Install Golang
+  package: name=golang
+
+- name: Install Golang tools
+  package: 
+    name: "{{ item }}"
+  with_items: "{{ golang_tools_packages }}"
+  when: golang_tools_packages | default(False)

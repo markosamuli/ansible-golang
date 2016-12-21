@@ -1,0 +1,4 @@
+---
+# defaults file for ansible-golang
+
+golang_path: "Projects/golang"

@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Marko Samuli Kirves
+  description: Golang development environment installer
+  license: MIT
+  min_ansible_version: 2.2
+  platforms:
+  - name: MacOSX
+    versions:
+    - 10.11
+    - 10.12
+  - name: Ubuntu
+    versions:
+    - trusty
+    - xenial
+  galaxy_tags: 
+    - golang
+dependencies: []
+  # List your role dependencies here, one per line.
+  # Be sure to remove the '[]' above if you add dependencies
+  # to this list.
