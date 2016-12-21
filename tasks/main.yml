@@ -1,6 +1,9 @@
 ---
 # tasks file for ansible-golang
 
+- name: Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
 - include: Ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
 
