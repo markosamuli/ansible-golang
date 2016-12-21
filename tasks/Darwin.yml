@@ -1,5 +1,5 @@
 ---
 
-- name: Install Golang
+- name: OS X | Install Golang
   package: 
     name: "{{ golang_package }}"
