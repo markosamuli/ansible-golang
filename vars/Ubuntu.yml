@@ -1,4 +1,6 @@
 ---
 
+golang_package: golang
+
 golang_tools_packages:
 - golang-golang-x-tools

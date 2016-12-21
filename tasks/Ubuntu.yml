@@ -2,3 +2,13 @@
 
 - name: Ubuntu | Add golang repository
   apt_repository: repo='ppa:ubuntu-lxc/lxd-stable'
+
+- name: Ubuntu | Install Golang
+  package: 
+    name: "{{ golang_package }}"
+
+- name: Ubuntu | Install Golang tools
+  package: 
+    name: "{{ item }}"
+  with_items: "{{ golang_tools_packages }}"
+  when: golang_tools_packages | default(False)

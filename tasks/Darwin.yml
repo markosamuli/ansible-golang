@@ -1,0 +1,5 @@
+---
+
+- name: Install Golang
+  package: 
+    name: "{{ golang_package }}"
