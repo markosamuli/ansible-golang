@@ -1,3 +1,4 @@
 ---
 
 golang_package: golang
+golang_repository: ppa:longsleep/golang-backports

@@ -1,13 +1,19 @@
 ---
 
+- name: Ubuntu | Remove outdated ubuntu-lxc/lxd-stable repository
+  apt_repository:
+    repo: 'ppa:ubuntu-lxc/lxd-stable'
+    state: absent
+
 - name: Ubuntu | Add golang repository
-  apt_repository: repo='ppa:ubuntu-lxc/lxd-stable'
+  apt_repository:
+    repo: '{{ golang_repository }}'
 
 - name: Ubuntu | Install Golang
-  package: 
+  package:
     name: "{{ golang_package }}"
 
 - name: Ubuntu | Install Golang tools
-  package: 
+  package:
     name: "{{ golang_tools_package }}"
   when: golang_tools_package | default(False)
