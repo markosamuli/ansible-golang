@@ -1,17 +1,14 @@
 ---
 
+language: generic
+python: "2.7"
+
 matrix:
   include:
     - os: linux
-      dist: trusty
+      dist: xenial
       sudo: required
-      language: generic
-      python: 
-       - "2.7"
     - os: osx
-      language: generic
-      python: 
-       - "2.7"
 
 # Install Ansible
 addons:
@@ -36,8 +33,8 @@ install:
 
   # Configure ansible.cfg on Linux
   - >
-    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then 
-      printf '\n[privilege_escalation]\nbecome=True' >> ansible.cfg 
+    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then
+      printf '\n[privilege_escalation]\nbecome=True' >> ansible.cfg
     fi
 
 before_script:
@@ -45,8 +42,8 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm get head || true; fi
 
 script:
-  # Basic role syntax check 
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check 
+  # Basic role syntax check
+  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
   # Test role run
   - >
@@ -58,7 +55,3 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
-
-notifications:
-  email: false
-#  webhooks: https://galaxy.ansible.com/api/v1/notifications/
