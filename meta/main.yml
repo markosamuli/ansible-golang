@@ -10,9 +10,9 @@ galaxy_info:
     - 10.12
   - name: Ubuntu
     versions:
-    - trusty
     - xenial
-  galaxy_tags: 
+    - bionic
+  galaxy_tags:
     - golang
 dependencies: []
   # List your role dependencies here, one per line.

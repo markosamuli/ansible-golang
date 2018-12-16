@@ -8,6 +8,7 @@
 - name: Ubuntu | Add golang repository
   apt_repository:
     repo: '{{ golang_repository }}'
+  when: golang_repository | default(False)
 
 - name: Ubuntu | Install Golang
   package:
