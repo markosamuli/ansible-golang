@@ -5,25 +5,59 @@ python: "2.7"
 
 matrix:
   include:
-    - os: linux
+    - name: "Ubuntu 14.04 LTS with Ansible 2.4"
+      os: linux
+      dist: trusty
+      sudo: required
+      env: ANSIBLE_VERSION='<2.5.0'
+    - name: "Ubuntu 16.04 LTS with Ansible 2.7"
+      os: linux
       dist: xenial
       sudo: required
-    - os: osx
+      env: ANSIBLE_VERSION='<2.8.0'
+    - name: "macOS 10.13 (High Sierra) with Xcode 10.1"
+      os: osx
+      osx_image: xcode10.1
+    - name: "macOS 10.14 (Mojave) with Xcode 10.2 beta"
+      os: osx
+      osx_image: xcode10.2
 
-# Install Ansible
+# Install Ansible and Python development packages
 addons:
   apt:
     packages:
     - python-pip
+  homebrew:
+    packages:
+      - ansible
+
+branches:
+  only:
+    - master
+    - develop
+    - /^feature\/.*$/
+    - /^bugfix\/.*$/
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
 before_install:
-  # Install Ansible with Homebrew on OS X
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update         ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ansible; fi
+  # Import new GPG key for RVM when necessary
+  - >
+    if [[ "$RVM_GPG_IMPORT" == "yes" ]]; then
+      command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+    fi
+
+  # Update Homebrew to fix HOMEBREW_LOGS error
+  - if [[ "$BREW_UPGRADE" == "yes" ]]; then brew update; fi
+
+  # Upgrade Ansible with installed Homebrew
+  - if [[ "$BREW_UPGRADE" == "yes" ]]; then brew upgrade ansible; fi
 
 install:
-  # Install Ansible with pip
-  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then sudo pip install ansible; fi
+  # Install Ansible with pip on Ubuntu
+  - >
+    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then
+      pip install --user ansible${ANSIBLE_VERSION}
+    fi
 
   # Check Ansible version
   - ansible --version
