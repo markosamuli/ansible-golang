@@ -1,5 +1,10 @@
 ---
 
-- name: OS X | Install Golang
-  package:
-    name: "{{ golang_package }}"
+- name: macOS
+  block:
+
+  - name: macOS | Install Golang with Homebrew
+    package:
+      name: "{{ golang_package }}"
+
+  become: false

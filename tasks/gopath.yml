@@ -1,69 +1,74 @@
 ---
 
-- name: Set local paths
-  set_fact:
-    local_home: "{{ lookup('env','HOME') }}"
+- name: Go workspace for the current user
+  block:
 
-- name: Create Go workspace directory
-  file:
-    path: "{{ local_home }}/{{ golang_path }}"
-    state: directory
-    recurse: yes
+  - name: Set local paths
+    set_fact:
+      local_home: "{{ lookup('env','HOME') }}"
 
-- name: Set path to .zshrc
-  set_fact:
-    zshrc_path: "{{ local_home }}/.zshrc"
-  when: zshrc_path is undefined
+  - name: Create Go workspace directory
+    file:
+      path: "{{ local_home }}/{{ golang_path }}"
+      state: directory
+      recurse: yes
 
-- name: Test if .zshrc exists
-  stat:
-    path: "{{ zshrc_path }}"
-  register: zshrc_stat
+  - name: Set path to .zshrc
+    set_fact:
+      zshrc_path: "{{ local_home }}/.zshrc"
+    when: zshrc_path is undefined
 
-- name: Resolve .zshrc symlink
-  set_fact:
-    zshrc_path: "{{ zshrc_stat.stat.lnk_source }}"
-  when: zshrc_stat.stat.exists and zshrc_stat.stat.islnk
+  - name: Test if .zshrc exists
+    stat:
+      path: "{{ zshrc_path }}"
+    register: zshrc_stat
 
-- name: Add GOPATH to .zshrc
-  lineinfile:
-    dest: "{{ zshrc_path }}"
-    regexp: 'export GOPATH='
-    line: "export GOPATH=$HOME/{{ golang_path }}"
-  when: zshrc_stat.stat.exists
+  - name: Resolve .zshrc symlink
+    set_fact:
+      zshrc_path: "{{ zshrc_stat.stat.lnk_source }}"
+    when: zshrc_stat.stat.exists and zshrc_stat.stat.islnk
 
-- name: Add $GOPATH/bin to PATH in .zshrc
-  lineinfile:
-    dest: "{{ zshrc_path }}"
-    regexp: 'export PATH=.*\$GOPATH/bin'
-    line: "export PATH=$PATH:$GOPATH/bin"
-  when: zshrc_stat.stat.exists
+  - name: Add GOPATH to .zshrc
+    lineinfile:
+      dest: "{{ zshrc_path }}"
+      regexp: 'export GOPATH='
+      line: "export GOPATH=$HOME/{{ golang_path }}"
+    when: zshrc_stat.stat.exists
 
-- name: Set path to .bashrc
-  set_fact:
-    bashrc_path: "{{ local_home }}/.bashrc"
-  when: bashrc_path is undefined
+  - name: Add $GOPATH/bin to PATH in .zshrc
+    lineinfile:
+      dest: "{{ zshrc_path }}"
+      regexp: 'export PATH=.*\$GOPATH/bin'
+      line: "export PATH=$PATH:$GOPATH/bin"
+    when: zshrc_stat.stat.exists
 
-- name: Test if .bashrc exists
-  stat:
-    path: "{{ bashrc_path }}"
-  register: bashrc_stat
+  - name: Set path to .bashrc
+    set_fact:
+      bashrc_path: "{{ local_home }}/.bashrc"
+    when: bashrc_path is undefined
 
-- name: Resolve .bashrc symlink
-  set_fact:
-    bashrc_path: "{{ bashrc_stat.stat.lnk_source }}"
-  when: bashrc_stat.stat.exists and bashrc_stat.stat.islnk
+  - name: Test if .bashrc exists
+    stat:
+      path: "{{ bashrc_path }}"
+    register: bashrc_stat
 
-- name: Add GOPATH to .bashrc
-  lineinfile:
-    dest: "{{ bashrc_path }}"
-    regexp: 'export GOPATH='
-    line: "export GOPATH=$HOME/{{ golang_path }}"
-  when: bashrc_stat.stat.exists
+  - name: Resolve .bashrc symlink
+    set_fact:
+      bashrc_path: "{{ bashrc_stat.stat.lnk_source }}"
+    when: bashrc_stat.stat.exists and bashrc_stat.stat.islnk
 
-- name: Add $GOPATH/bin to PATH in .bashrc
-  lineinfile:
-    dest: "{{ bashrc_path }}"
-    regexp: 'export PATH=.*\$GOPATH/bin'
-    line: "export PATH=$PATH:$GOPATH/bin"
-  when: bashrc_stat.stat.exists
+  - name: Add GOPATH to .bashrc
+    lineinfile:
+      dest: "{{ bashrc_path }}"
+      regexp: 'export GOPATH='
+      line: "export GOPATH=$HOME/{{ golang_path }}"
+    when: bashrc_stat.stat.exists
+
+  - name: Add $GOPATH/bin to PATH in .bashrc
+    lineinfile:
+      dest: "{{ bashrc_path }}"
+      regexp: 'export PATH=.*\$GOPATH/bin'
+      line: "export PATH=$PATH:$GOPATH/bin"
+    when: bashrc_stat.stat.exists
+
+  become: false
