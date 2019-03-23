@@ -5,7 +5,7 @@
     local_home: "{{ lookup('env','HOME') }}"
   become: False
 
-- name: Create golang projects directory
+- name: Create Go workspace directory
   file:
     path: "{{ local_home }}/{{ golang_path }}"
     state: directory
@@ -53,7 +53,8 @@
   become: False
 
 - name: Test if .bashrc exists
-  stat: path="{{ bashrc_path }}"
+  stat:
+    path: "{{ bashrc_path }}"
   register: bashrc_stat
   become: False
 
