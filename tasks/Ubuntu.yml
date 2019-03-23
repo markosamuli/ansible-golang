@@ -5,6 +5,12 @@
     repo: 'ppa:ubuntu-lxc/lxd-stable'
     state: absent
 
+- name: Ubuntu | Import GPG key
+  become: yes
+  apt_key:
+    keyserver: "{{ golang_apt_keyserver }}"
+    id: "{{ golang_apt_key_id }}"
+
 - name: Ubuntu | Add golang repository
   apt_repository:
     repo: '{{ golang_repository }}'

@@ -1,0 +1,6 @@
+---
+
+golang_repository: ppa:longsleep/golang-backports
+golang_apt_keyserver: keyserver.ubuntu.com
+golang_apt_key_id: 52B59B1571A79DBC054901C0F6BC817356A3D45E
+golang_tools_package: golang-golang-x-tools

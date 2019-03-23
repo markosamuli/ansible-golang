@@ -1,4 +1,0 @@
----
-
-golang_repository: ppa:longsleep/golang-backports
-golang_tools_package: golang-golang-x-tools
