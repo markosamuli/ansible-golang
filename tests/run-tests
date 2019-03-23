@@ -4,6 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT=$(dirname $DIR)
 
 ROLE_NAME=ansible-golang
+TEST_HOME=/home/test
 
 ###
 # Stop all containers
@@ -46,7 +47,7 @@ function start {
     local container_name=${ROLE_NAME}-${image}-tests
     echo "*** Start container"
     docker run --rm -it -d \
-        -v $(pwd):/src/${ROLE_NAME} \
+        -v $(pwd):${TEST_HOME}/${ROLE_NAME} \
         --name ${container_name} \
         $image_name
 }
@@ -59,8 +60,9 @@ function run_tests {
     local container_name=${ROLE_NAME}-${image}-tests
     echo "*** Run tests"
     docker exec -it \
+        --user test \
         ${container_name} \
-        /src/${ROLE_NAME}/tests/run-tests-docker
+        ${TEST_HOME}/${ROLE_NAME}/tests/run-tests-docker
 }
 
 trap finish EXIT
@@ -72,10 +74,9 @@ set -e
 printf '[defaults]\nroles_path=../\n' > ansible.cfg
 
 images=( bionic xenial )
-for i in "${images[@]}"
-do
-  build $i
-  start $i
-  run_tests $i
-  stop $i
+for i in "${images[@]}"; do
+    build $i
+    start $i
+    run_tests $i
+    stop $i
 done
