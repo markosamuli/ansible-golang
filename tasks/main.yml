@@ -8,11 +8,17 @@
   include_vars: "{{ ansible_distribution_release }}.yml"
   when: ansible_distribution == 'Ubuntu'
 
-- include: Ubuntu.yml
+- name: Install on Ubuntu
+  include_tasks: Ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
+  become: true
 
-- include: Darwin.yml
+- name: Install on macOS
+  include_tasks: Darwin.yml
   when: ansible_os_family == 'Darwin'
+  become: false
 
-- include: gopath.yml
+- name: Configure Go workspace
+  include_tasks: gopath.yml
   when: golang_path | default(False)
+  become: false

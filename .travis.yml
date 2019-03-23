@@ -82,12 +82,6 @@ install:
   # Create ansible.cfg with correct roles_path
   - printf '[defaults]\nroles_path=../\n' > ansible.cfg
 
-  # Configure ansible.cfg on Linux
-  - >
-    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then
-      printf '\n[privilege_escalation]\nbecome=True' >> ansible.cfg
-    fi
-
 before_script:
   # https://github.com/travis-ci/travis-ci/issues/6307
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm get head || true; fi
