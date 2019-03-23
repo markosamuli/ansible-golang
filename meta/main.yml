@@ -3,7 +3,7 @@ galaxy_info:
   author: Marko Samuli Kirves
   description: Golang development environment installer
   license: MIT
-  min_ansible_version: 2.2
+  min_ansible_version: 2.4
   platforms:
     - name: MacOSX
       versions:
