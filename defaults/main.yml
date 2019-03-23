@@ -1,4 +1,4 @@
 ---
-# defaults file for ansible-golang
+# defaults file for markosamuli.golang
 
 golang_path: "Projects/golang"
