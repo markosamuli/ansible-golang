@@ -1,0 +1,30 @@
+---
+
+- name: Set path to .zshrc
+  set_fact:
+    zshrc_path: "{{ local_home }}/.zshrc"
+  when: zshrc_path is undefined
+
+- name: Test if .zshrc exists
+  stat:
+    path: "{{ zshrc_path }}"
+  register: zshrc_stat
+
+- name: Resolve .zshrc symlink
+  set_fact:
+    zshrc_path: "{{ zshrc_stat.stat.lnk_source }}"
+  when: zshrc_stat.stat.exists and zshrc_stat.stat.islnk
+
+- name: Add GOPATH to .zshrc
+  lineinfile:
+    dest: "{{ zshrc_path }}"
+    regexp: 'export GOPATH='
+    line: "export GOPATH=$HOME/{{ golang_path }}"
+  when: zshrc_stat.stat.exists
+
+- name: Add $GOPATH/bin to PATH in .zshrc
+  lineinfile:
+    dest: "{{ zshrc_path }}"
+    regexp: 'export PATH=.*\$GOPATH/bin'
+    line: "export PATH=$PATH:$GOPATH/bin"
+  when: zshrc_stat.stat.exists
