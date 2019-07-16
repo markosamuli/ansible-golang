@@ -2,10 +2,10 @@
 # tasks file for ansible-golang
 
 - name: Include OS-specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: "os/{{ ansible_os_family }}.yml"
 
 - name: Include distribution variables
-  include_vars: "{{ ansible_distribution }}.yml"
+  include_vars: "os/{{ ansible_distribution }}.yml"
   when: ansible_distribution == 'Ubuntu'
 
 - name: Install on Ubuntu
