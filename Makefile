@@ -2,6 +2,9 @@ PRE_COMMIT_HOOKS = .git/hooks/pre-commit
 PRE_PUSH_HOOKS = .git/hooks/pre-push
 COMMIT_MSG_HOOKS = .git/hooks/commit-msg
 
+.PHONY: all
+all: install-git-hooks test-update lint test
+
 .PHONY: test
 test:
 	@./tests/run-tests
@@ -10,12 +13,8 @@ test:
 test-update:
 	@./tests/update
 
-.PHONY: update
-update:
-	@./update-release
-
 .PHONY: lint
-lint: git-hooks
+lint: install-git-hooks
 	@pre-commit run -a
 
 .PHONY: install-git-hooks
