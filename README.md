@@ -1,9 +1,15 @@
 # markosamuli.golang
 
-[![Build Status](https://travis-ci.org/markosamuli/ansible-golang.svg?branch=master)](https://travis-ci.org/markosamuli/ansible-golang)
+[![GitHub release](https://img.shields.io/github/release/markosamuli/ansible-golang.svg)](https://github.com/markosamuli/ansible-golang/releases)
+[![License](https://img.shields.io/github/license/markosamuli/ansible-golang.svg)](https://github.com/markosamuli/ansible-golang/blob/master/LICENSE)
 
-Install [Go programming language] and development
-environment on Ubuntu and macOS.
+| Branch  | Status |
+|---------|--------|
+| master  | [![Build Status](https://travis-ci.org/markosamuli/ansible-golang.svg?branch=master)](https://travis-ci.org/markosamuli/ansible-golang)
+| develop | [![Build Status](https://travis-ci.org/markosamuli/ansible-golang.svg?branch=develop)](https://travis-ci.org/markosamuli/ansible-golang)
+
+Ansible role to install [Go programming language] and development environment
+on Ubuntu and macOS.
 
 Used for setting up my workstations in the following playbooks:
 
