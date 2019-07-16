@@ -1,6 +1,7 @@
 ---
 
 - name: Ubuntu
+  become: true
   block:
 
   - name: Ubuntu | Remove outdated ubuntu-lxc/lxd-stable repository
@@ -27,4 +28,4 @@
       name: "{{ golang_tools_package }}"
     when: golang_tools_package | default(False)
 
-  become: true
+  
