@@ -1,13 +1,16 @@
 ---
 galaxy_info:
+  role_name: golang
   author: Marko Samuli Kirves
   description: Golang development environment installer
   license: MIT
-  min_ansible_version: 2.4
+  min_ansible_version: 2.6
+  github_branch: master
   platforms:
     - name: MacOSX
       versions:
         - 10.13
+        - 10.14
     - name: Ubuntu
       versions:
         - xenial
