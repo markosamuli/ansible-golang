@@ -38,9 +38,6 @@ echo ""
 echo "*** Idempotence test"
 
 ansible-playbook tests/test.yml -i tests/inventory --connection=local \
-    -e "${extra_vars}"
-
-ansible-playbook tests/test.yml -i tests/inventory --connection=local \
     -e "${extra_vars}" \
     | grep -q 'changed=0.*failed=0' \
     && (echo 'Idempotence test: pass' && exit 0) \
