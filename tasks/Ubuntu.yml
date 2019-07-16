@@ -4,26 +4,26 @@
   become: true
   block:
 
-    - name: Ubuntu | Remove outdated ubuntu-lxc/lxd-stable repository
+    - name: Remove outdated ubuntu-lxc/lxd-stable repository
       apt_repository:
         repo: 'ppa:ubuntu-lxc/lxd-stable'
         state: absent
 
-    - name: Ubuntu | Import GPG key
+    - name: Import GPG key
       apt_key:
         keyserver: "{{ golang_apt_keyserver }}"
         id: "{{ golang_apt_key_id }}"
 
-    - name: Ubuntu | Add golang repository
+    - name: Add golang repository
       apt_repository:
         repo: '{{ golang_repository }}'
       when: golang_repository | default(false)
 
-    - name: Ubuntu | Install Golang
+    - name: Install Golang
       package:
         name: "{{ golang_package }}"
 
-    - name: Ubuntu | Install Golang tools
+    - name: Install Golang tools
       package:
         name: "{{ golang_tools_package }}"
       when: golang_tools_package | default(false)

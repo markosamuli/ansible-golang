@@ -1,0 +1,8 @@
+---
+
+- name: Debian
+  become: true
+  block:
+    - name: Install Golang
+      package:
+        name: "{{ golang_package }}"

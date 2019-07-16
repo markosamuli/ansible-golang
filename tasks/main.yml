@@ -12,6 +12,10 @@
   include_tasks: Ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
 
+- name: Install on Debian
+  include_tasks: Debian.yml
+  when: ansible_distribution == 'Debian'
+
 - name: Install on macOS
   include_tasks: Darwin.yml
   when: ansible_os_family == 'Darwin'
