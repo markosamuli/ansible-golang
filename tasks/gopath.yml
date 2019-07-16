@@ -3,7 +3,6 @@
 - name: Go workspace for the current user
   become: false
   block:
-
     - name: Set local paths
       set_fact:
         local_home: "{{ lookup('env','HOME') }}"
@@ -12,7 +11,7 @@
       file:
         path: "{{ local_home }}/{{ golang_path }}"
         state: directory
-        recurse: yes
+        recurse: true
 
     - name: Configure .bashrc
       include_tasks: shell_bash.yml
