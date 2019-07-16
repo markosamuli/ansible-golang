@@ -3,26 +3,49 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT=$(dirname $DIR)
 
+###
+# Print error into STDERR
+###
+error() {
+    echo "$@" 1>&2
+}
+
 set -e
+
+# Variables to pass to ansible-playbook
+ansible_vars=(
+)
+extra_vars=$(printf ",%s" "${ansible_vars[@]}")
+extra_vars="{${extra_vars:1}}"
+
+# Paths in which Ansible will search for Roles
+export ANSIBLE_ROLES_PATH=$(dirname $PROJECT_ROOT)
 
 cd $PROJECT_ROOT
 
+echo ""
 echo "*** Check syntax"
 
 ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
+echo ""
 echo "*** Run Ansible playbook"
 
-ansible-playbook tests/test.yml -i tests/inventory --connection=local
+ansible-playbook tests/test.yml -i tests/inventory --connection=local \
+    -e "${extra_vars}"
 
+echo ""
 echo "*** Idempotence test"
 
 ansible-playbook tests/test.yml -i tests/inventory --connection=local \
+    -e "${extra_vars}"
+
+ansible-playbook tests/test.yml -i tests/inventory --connection=local \
+    -e "${extra_vars}" \
     | grep -q 'changed=0.*failed=0' \
     && (echo 'Idempotence test: pass' && exit 0) \
     || (echo 'Idempotence test: fail' && exit 1)
 
-
-echo "*** Verify installed version"
-
+command -v go > /dev/null || \
+    { error "go not found"; exit 1; }
 go version
