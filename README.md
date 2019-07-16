@@ -66,7 +66,7 @@ make test
 
 ## License
 
-[MIT][LICENSE]
+[MIT](LICENSE)
 
 ## Author Information
 
