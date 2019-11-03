@@ -1,22 +1,21 @@
-FROM debian:stretch
+FROM debian:stretch as debian-stretch
+
+LABEL name="debian-stretch"
+LABEL version="2019-11-03"
 
 RUN apt-get update && apt-get install -y \
     python-minimal \
     python-pip \
- && rm -rf /var/lib/apt/lists/*
-
-ARG ansible_version="<2.9.0"
-ENV ANSIBLE_VERSION="${ansible_version}"
-RUN pip install ansible${ANSIBLE_VERSION}
-
-RUN apt-get update && apt-get install -y \
     zsh \
     sudo \
+    aptitude \
+ && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y \
-    aptitude \
- && rm -rf /var/lib/apt/lists/*
+FROM debian-stretch
+
+LABEL name="ansible-golang-stretch"
+LABEL version="2019-11-03"
 
 ARG user=test
 ARG repository=ansible-golang
@@ -33,5 +32,9 @@ RUN touch /home/${user}/.zshrc \
 RUN mkdir -p /home/${user}/${repository} ; \
     chown -R ${user}:${user} /home/${user}/${repository}
 VOLUME ["/home/${user}/${repository}"]
+
+ARG ansible_version="<2.9.0"
+ENV ANSIBLE_VERSION="${ansible_version}"
+RUN pip install ansible${ANSIBLE_VERSION}
 
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
