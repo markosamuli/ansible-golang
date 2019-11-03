@@ -19,9 +19,9 @@
   command: grep -qc 'export GOPATH=' "{{ bashrc_path }}"
   register: bashrc_gopath
   when: bashrc_stat.stat.exists
-  check_mode: no
-  ignore_errors: yes
-  changed_when: no
+  check_mode: false
+  ignore_errors: true
+  changed_when: false
 
 - name: Add GOPATH to .bashrc
   lineinfile:
