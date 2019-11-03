@@ -1,7 +1,4 @@
-FROM ubuntu:xenial as ubuntu-xenial
-
-LABEL name="ubuntu-xenial"
-LABEL version="2019-11-03"
+FROM ubuntu:xenial
 
 RUN apt-get update && apt-get install -y \
     python-minimal \
@@ -11,11 +8,6 @@ RUN apt-get update && apt-get install -y \
     aptitude \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-FROM ubuntu-xenial
-
-LABEL name="ansible-golang-xenial"
-LABEL version="2019-11-03"
 
 ARG user=test
 ARG repository=ansible-golang

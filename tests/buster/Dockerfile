@@ -1,7 +1,4 @@
-FROM debian:buster as debian-buster
-
-LABEL name="debian-buster"
-LABEL version="2019-11-03"
+FROM debian:buster
 
 RUN apt-get update && apt-get install -y \
     python-minimal \
@@ -11,11 +8,6 @@ RUN apt-get update && apt-get install -y \
     aptitude \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-FROM debian-buster
-
-LABEL name="ansible-golang-buster"
-LABEL version="2019-11-03"
 
 ARG user=test
 ARG repository=ansible-golang

@@ -1,7 +1,4 @@
-FROM ubuntu:bionic as ubuntu-bionic
-
-LABEL name="ubuntu-bionic"
-LABEL version="2019-11-03"
+FROM ubuntu:bionic
 
 RUN apt-get update && apt-get install -y \
     python-minimal \
@@ -11,11 +8,6 @@ RUN apt-get update && apt-get install -y \
     aptitude \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-FROM ubuntu-bionic
-
-LABEL name="ansible-golang-bionic"
-LABEL version="2019-11-03"
 
 ARG user=test
 ARG repository=ansible-golang

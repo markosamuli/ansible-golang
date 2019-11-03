@@ -1,7 +1,4 @@
-FROM %%FROM%% as %%BASE_IMAGE_NAME%%
-
-LABEL name="%%BASE_IMAGE_NAME%%"
-LABEL version="%%LABEL_VERSION%%"
+FROM %%FROM%%
 
 RUN apt-get update && apt-get install -y \
     python-minimal \
@@ -11,11 +8,6 @@ RUN apt-get update && apt-get install -y \
     aptitude \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-FROM %%BASE_IMAGE_NAME%%
-
-LABEL name="%%LABEL_NAME%%"
-LABEL version="%%LABEL_VERSION%%"
 
 ARG user=%%USER%%
 ARG repository=%%REPOSITORY%%

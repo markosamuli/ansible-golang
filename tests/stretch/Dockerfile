@@ -1,7 +1,4 @@
-FROM debian:stretch as debian-stretch
-
-LABEL name="debian-stretch"
-LABEL version="2019-11-03"
+FROM debian:stretch
 
 RUN apt-get update && apt-get install -y \
     python-minimal \
@@ -11,11 +8,6 @@ RUN apt-get update && apt-get install -y \
     aptitude \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-FROM debian-stretch
-
-LABEL name="ansible-golang-stretch"
-LABEL version="2019-11-03"
 
 ARG user=test
 ARG repository=ansible-golang
