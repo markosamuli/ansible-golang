@@ -17,11 +17,14 @@ addons:
   apt:
     packages:
       - python-pip
+      - python-dev
+      - shellcheck
     update: true
+  snaps:
+    - shfmt
   homebrew:
     packages:
       - ansible
-      - pre-commit
     update: true
 
 cache:
@@ -39,12 +42,6 @@ install:
       fi
     fi
 
-  # Install pre-commit with pip on Ubuntu
-  - >
-    if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then
-      pip install --user pre-commit
-    fi
-
   # Check Ansible version
   - ansible --version
 
@@ -59,7 +56,6 @@ before_script:
     fi
 
 script:
-
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
@@ -95,10 +91,17 @@ jobs:
       os: linux
       dist: xenial
       language: minimal
+      install:
+        # Fix ansible-lint installation issues
+        # https://github.com/ansible/ansible-lint/issues/590
+        - pip install --user virtualenv==16.3.0
+
+        # Install pre-commit with pip
+        - SKIP=dockerfile_lint pip install --user pre-commit
       script:
         - pre-commit run -a
 
-  # Run tests
+    # Run tests
     - stage: test
       name: "Ubuntu 16.04 (Xenial) with Ansible 2.6"
       os: linux
@@ -114,7 +117,6 @@ jobs:
       os: linux
       dist: bionic
       env: ANSIBLE_VERSION='<2.9.0'
-
     - stage: test
       name: "macOS 10.13 (High Sierra) with Xcode 10.1"
       os: osx
