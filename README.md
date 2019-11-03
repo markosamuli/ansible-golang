@@ -25,8 +25,11 @@ Used for setting up my workstations in the following playbooks:
 Configure [`GOPATH`][GOPATH] for Go projects:
 
 ```yaml
-golang_path: "Projects/golang"
+golang_path: "go"
 ```
+
+The path is relative to the current user home directory, for
+example `golang_path: "Projects/go"` will become `~/Projects/go`.
 
 Update `GOPATH` and `PATH` in `.bashrc` and `.zshrc`:
 

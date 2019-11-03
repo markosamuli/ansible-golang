@@ -2,7 +2,7 @@
 # defaults file for markosamuli.golang
 
 # Default GOPATH
-golang_path: "Projects/golang"
+golang_path: "go"
 
 # Add GOPATH to .bashrc and .zshrc
 golang_init_shell: true
