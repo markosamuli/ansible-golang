@@ -1,0 +1,25 @@
+---
+
+- name: Install Go packages for the current user
+  become: false
+  block:
+
+    - name: Install packages
+      command: "go get -u {{ item.name }}"
+      with_items: "{{ golang_packages }}"
+      register: go_get_result
+      changed_when: "'downloading' in go_get_result.stderr"
+      environment:
+        GOPATH: "{{ ansible_env.HOME }}/{{ golang_path }}"
+        GO111MODULE: "auto"
+      when: golang_modules | bool
+
+    - name: Install packages
+      command: "go get -u {{ item.name }}"
+      with_items: "{{ golang_packages }}"
+      register: go_get_result
+      changed_when: "'downloading' in go_get_result.stderr"
+      environment:
+        GOPATH: "{{ ansible_env.HOME }}/{{ golang_path }}"
+        GO111MODULE: "off"
+      when: not golang_modules | bool

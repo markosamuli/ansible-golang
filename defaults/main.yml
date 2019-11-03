@@ -6,3 +6,11 @@ golang_path: "Projects/golang"
 
 # Add GOPATH to .bashrc and .zshrc
 golang_init_shell: true
+
+# Enable GO111MODULES
+golang_modules: true
+
+# Install Go packages
+golang_packages:
+  - name: golang.org/x/lint
+  - name: golang.org/x/tools/cmd/goimports

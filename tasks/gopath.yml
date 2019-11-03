@@ -3,13 +3,10 @@
 - name: Go workspace for the current user
   become: false
   block:
-    - name: Set local paths
-      set_fact:
-        local_home: "{{ lookup('env','HOME') }}"
 
     - name: Create Go workspace directory
       file:
-        path: "{{ local_home }}/{{ golang_path }}"
+        path: "{{ ansible_env.HOME }}/{{ golang_path }}"
         state: directory
         recurse: true
 

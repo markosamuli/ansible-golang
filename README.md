@@ -37,6 +37,20 @@ golang_init_shell: true
 You should disable `golang_init_shell` if you're managing your shell
 scripts using [`.dotfiles`][dotfiles] and don't want to mess up them.
 
+To use Go modules with `GO111MODULES=auto`:
+
+```yaml
+golang_modules: true
+```
+
+To install packages:
+
+```yaml
+golang_packages:
+  - name: golang.org/x/lint
+  - name: golang.org/x/tools/cmd/goimports
+```
+
 [GOPATH]: https://github.com/golang/go/wiki/GOPATH
 [dotfiles]: https://dotfiles.github.io
 

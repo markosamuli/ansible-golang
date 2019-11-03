@@ -23,3 +23,7 @@
 - name: Configure Go workspace
   include_tasks: gopath.yml
   when: golang_path | default(False)
+
+- name: Install Go packages
+  include_tasks: packages.yml
+  when: golang_packages | default(False)
