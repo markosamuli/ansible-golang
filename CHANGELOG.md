@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.1] - 2019-11-10
+
+* Check that user `HOME` is not pointing to `/root`
+* Check that Git is installed if installing packages
+
 ## [1.2.0] - 2019-11-03
 
 * Changed default `GOPATH` from `~/Projects/golang` to `~/go`
@@ -19,6 +24,7 @@
 Initial version.
 
 [Unreleased]: https://github.com/markosamuli/ansible-golang/commits/develop
+[1.2.1]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.2.1
 [1.2.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.2.0
 [1.1.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.1.0
 [1.0.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.0.0
