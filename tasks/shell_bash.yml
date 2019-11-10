@@ -2,7 +2,7 @@
 
 - name: Set path to .bashrc
   set_fact:
-    bashrc_path: "{{ ansible_env.HOME }}/.bashrc"
+    bashrc_path: "{{ golang_home }}/.bashrc"
   when: bashrc_path is undefined
 
 - name: Test if .bashrc exists

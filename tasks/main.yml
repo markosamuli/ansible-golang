@@ -8,6 +8,9 @@
   include_vars: "os/{{ ansible_distribution }}.yml"
   when: ansible_distribution == 'Ubuntu'
 
+- name: User configuration
+  include_tasks: user.yml
+
 - name: Install on Ubuntu
   include_tasks: Ubuntu.yml
   when: ansible_distribution == 'Ubuntu'

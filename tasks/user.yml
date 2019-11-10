@@ -1,0 +1,12 @@
+---
+
+- name: Check configuration
+  become: false
+  block:
+
+    - name: Check that 'golang_home' is defined and not set to '/root'
+      assert:
+        that:
+          - golang_home is defined
+          - golang_home != '/root'
+        msg: Do install this role as root

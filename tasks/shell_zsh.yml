@@ -2,7 +2,7 @@
 
 - name: Set path to .zshrc
   set_fact:
-    zshrc_path: "{{ ansible_env.HOME }}/.zshrc"
+    zshrc_path: "{{ golang_home }}/.zshrc"
   when: zshrc_path is undefined
 
 - name: Test if .zshrc exists
