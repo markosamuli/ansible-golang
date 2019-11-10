@@ -6,7 +6,7 @@
 
     - name: Create Go workspace directory
       file:
-        path: "{{ ansible_env.HOME }}/{{ golang_path }}"
+        path: "{{ golang_home }}/{{ golang_path }}"
         state: directory
         recurse: true
 
