@@ -54,6 +54,8 @@ golang_packages:
   - name: golang.org/x/tools/cmd/goimports
 ```
 
+Make sure Git is installed if installing packages or the role will fail.
+
 [GOPATH]: https://github.com/golang/go/wiki/GOPATH
 [dotfiles]: https://dotfiles.github.io
 

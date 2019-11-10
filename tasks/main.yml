@@ -11,6 +11,10 @@
 - name: User configuration
   include_tasks: user.yml
 
+- name: Git is required to install packages
+  include_tasks: git.yml
+  when: golang_packages | default(False)
+
 - name: Install on Ubuntu
   include_tasks: Ubuntu.yml
   when: ansible_distribution == 'Ubuntu'

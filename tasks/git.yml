@@ -1,0 +1,12 @@
+---
+
+- name: Verify that Git is installed
+  shell: command -v git >/dev/null 2>&1
+  register: command_git
+  ignore_errors: true
+  changed_when: false
+
+- name: Fail if Git is not installed
+  fail:
+    msg: Git is required to install packages
+  when: command_git.rc > 0

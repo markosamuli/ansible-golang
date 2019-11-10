@@ -29,4 +29,9 @@ ARG ansible_version="<2.9.0"
 ENV ANSIBLE_VERSION="${ansible_version}"
 RUN pip install ansible${ANSIBLE_VERSION}
 
+RUN apt-get update && apt-get install -y \
+    git \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
