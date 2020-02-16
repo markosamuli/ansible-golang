@@ -12,6 +12,7 @@
     "ext",
     "gofmt",
     "gopath",
+    "goroot",
     "have",
     "islnk",
     "linebreak",
