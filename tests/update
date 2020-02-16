@@ -37,12 +37,12 @@ update_docker_image() {
     fi
 }
 
-ubuntu_releases=(xenial bionic)
+ubuntu_releases=(xenial bionic eoan)
 for tag in "${ubuntu_releases[@]}"; do
     update_docker_image "ubuntu" "${tag}"
 done
 
-debian_releases=(stretch buster)
+debian_releases=(buster)
 for tag in "${debian_releases[@]}"; do
     update_docker_image "debian" "${tag}"
 done

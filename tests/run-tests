@@ -8,6 +8,10 @@ TEST_HOME=/home/test
 
 # Detect Windows Subsystem for Linux
 detect_wsl() {
+    if [ ! -e "/proc/version" ]; then
+        is_wsl=0
+        return
+    fi
     if grep -q Microsoft /proc/version; then
         echo "*** Windows Subsystem for Linux detected"
         is_wsl=1

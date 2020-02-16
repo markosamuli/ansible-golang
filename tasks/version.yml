@@ -1,0 +1,20 @@
+---
+
+- name: Check Go version information
+  become: false
+  block:
+
+    - name: Get Go version
+      shell: "go version | grep -o 'go\\([1-9]*\\.[1-9]*\\.[1-9]*\\)' | sed 's/go//'"
+      register: go_version_result
+      changed_when: false
+
+    - name: Set Go version
+      set_fact:
+        go_version: "{{ go_version_result.stdout }}"
+
+    - name: Require minimum Go version 1.12
+      assert:
+        that:
+          - "go_version is version('1.12', '>=')"
+        msg: "Go version 1.12 is required"

@@ -30,7 +30,7 @@ ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 echo "*** Run Ansible playbook"
 
 ansible-playbook tests/test.yml -i tests/inventory --connection=local \
-    -e "${extra_vars}"
+    -e "${extra_vars}" -v
 
 echo "*** Idempotence test"
 

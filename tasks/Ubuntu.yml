@@ -23,7 +23,13 @@
       package:
         name: "{{ golang_package }}"
 
-    - name: Install Golang tools
-      package:
-        name: "{{ golang_tools_package }}"
-      when: golang_tools_package | default(false)
+    - name: Symlink Go binaries
+      file:
+        state: link
+        src: "/usr/lib/go-{{ golang_version }}/bin/{{ item }}"
+        dest: "/usr/bin/{{ item }}"
+        owner: root
+        group: root
+      with_items:
+        - go
+        - gofmt

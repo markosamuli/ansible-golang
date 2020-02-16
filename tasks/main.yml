@@ -3,10 +3,11 @@
 
 - name: Include OS-specific variables
   include_vars: "os/{{ ansible_os_family }}.yml"
+  when: ansible_os_family == 'Darwin'
 
 - name: Include distribution variables
   include_vars: "os/{{ ansible_distribution }}.yml"
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_os_family == 'Debian'
 
 - name: User configuration
   include_tasks: user.yml
@@ -30,6 +31,9 @@
 - name: Configure Go workspace
   include_tasks: gopath.yml
   when: golang_path | default(False)
+
+- name: Check Go version
+  include_tasks: version.yml
 
 - name: Install Go packages
   include_tasks: packages.yml
