@@ -10,3 +10,15 @@
           - golang_home is defined
           - golang_home != '/root'
         msg: Do install this role as root
+
+    - name: Check that GIMME_ENV is not defined
+      assert:
+        that:
+          - ansible_env.GIMME_ENV is not defined
+        msg: Do not use this role with gimme
+
+    - name: Check that GOROOT is not defined
+      assert:
+        that:
+          - ansible_env.GOROOT is not defined
+        msg: Do not use this role with custom GOROOT
