@@ -55,9 +55,11 @@ before_script:
       rvm get head || true
     fi
 
-  # Print existing Go binary path
+  # Remove Go versions installed with Gimme
   - >
-    command -v go
+    if [[ -d "/home/travis/.gimme" ]]; then
+      rm -rf /home/travis/.gimme
+    fi
 
 script:
   # Basic role syntax check
