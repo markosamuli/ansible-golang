@@ -10,7 +10,7 @@ if: |
   type = pull_request OR \
   branch IN (master, develop)
 
-language: generic
+language: minimal
 
 # Install Ansible and Python development packages
 addons:
@@ -54,6 +54,10 @@ before_script:
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       rvm get head || true
     fi
+
+  # Print existing Go binary path
+  - >
+    command -v go
 
 script:
   # Basic role syntax check
