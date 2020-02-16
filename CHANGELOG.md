@@ -1,17 +1,37 @@
 # Changelog
 
-## [Unreleased][unreleased] - 2020-02-16
+## [1.3.0] - 2020-02-16
 
-- Use versioned installation package from Homebrew and PPA repositories
-- Install Go version 1.13
-- The role requires Go version 1.12
+### Added
+
 - Add `golang_version` variable for configuring installed version on macOS
   and Ubuntu
-- Install Go packages with `GO111MODULES=on`
-- Do not install `golang-golang-x-tools` package on Ubuntu
-- Test image for [Ubuntu 19.10 (Eoan Ermine)][eoan]
 - Enable backports repository on [Debian Buster][buster]
+- Test with Ansible 2.9
+- Test with [Ubuntu 19.10 (Eoan Ermine)][eoan]
+
+### Changed
+
+- Install Go version 1.13 using versioned installation package from Homebrew
+  and PPA repositories
+- Install Go packages with `GO111MODULES=on`
+- Test with Ansible 2.9
+
+### Deprecated
+
+- The role requires Go version 1.12, support for older versions is deprecated
+- The role requires Ansible 2.7, support for older versions is deprecated
+
+### Removed
+
+- Do not install `golang-golang-x-tools` package on Ubuntu
 - Do not test on [Debian Stretch][stretch]
+- Do not test with Ansible 2.6
+
+### Fixed
+
+- Check that `GOROOT` or `GIMME_ENV` environment variables are not set when
+  running the role
 
 [eoan]: http://releases.ubuntu.com/19.10/
 [buster]: https://wiki.debian.org/DebianBuster
@@ -41,6 +61,7 @@
 Initial version.
 
 [unreleased]: https://github.com/markosamuli/ansible-golang/commits/develop
+[1.3.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.3.0
 [1.2.1]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.2.1
 [1.2.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.2.0
 [1.1.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.1.0
