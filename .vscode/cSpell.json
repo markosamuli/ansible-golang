@@ -18,6 +18,7 @@
     "linebreak",
     "markdown",
     "md",
+    "pipefail",
     "shebangs",
     "stat",
     "symlink"
