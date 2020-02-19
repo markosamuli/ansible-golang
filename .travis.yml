@@ -69,6 +69,12 @@ before_script:
   - export PATH=$(echo "${PATH}" | sed 's~/home/travis/.gimme/versions/\([^/]*\)/bin:~~')
 
 script:
+
+  - >
+    if command -v go >/dev/null; then
+      command -v go
+    fi
+
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
