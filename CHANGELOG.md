@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1] - 2020-07-01
+
+### Fixed
+
+- Change `github.com/TrueFurby/go-callvis` to `github.com/ofabry/go-callvis`
+- Fail version check if `go` binary is not found
+
 ## [1.3.0] - 2020-02-16
 
 ### Added
