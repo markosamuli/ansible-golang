@@ -16,7 +16,7 @@ golang_init_shell: true
 # Install Go packages
 golang_packages:
   - name: github.com/kisielk/errcheck
-  - name: github.com/TrueFurby/go-callvis
+  - name: github.com/ofabry/go-callvis
   - name: golang.org/x/lint
   - name: golang.org/x/tools/cmd/goimports
   - name: golang.org/x/tools/cmd/stringer

@@ -105,7 +105,7 @@ Make sure Git is installed if installing packages or the role will fail.
 [golint]: https://godoc.org/golang.org/x/lint
 [goimports]: https://godoc.org/golang.org/x/tools/cmd/goimports
 [errcheck]: https://github.com/kisielk/errcheck
-[go-callvis]: https://github.com/TrueFurby/go-callvis
+[go-callvis]: https://github.com/ofabry/go-callvis
 [gopkgs]: https://github.com/uudashr/gopkgs
 [stringer]: https://godoc.org/golang.org/x/tools/cmd/stringer
 [guru]: https://godoc.org/golang.org/x/tools/cmd/guru
