@@ -40,7 +40,7 @@ update_docker_image() {
     fi
 }
 
-ubuntu_releases=(xenial bionic eoan)
+ubuntu_releases=(xenial bionic)
 for tag in "${ubuntu_releases[@]}"; do
     update_docker_image "ubuntu" "${tag}"
 done

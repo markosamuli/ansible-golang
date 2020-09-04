@@ -1,4 +1,6 @@
 ---
 
+golang_shell: /bin/bash
 golang_home: "{{ ansible_env.HOME }}"
 golang_min_version: "1.13"
+golang_install_prefix: /usr/local

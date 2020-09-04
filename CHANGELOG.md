@@ -16,6 +16,7 @@
 - Upgrade ansible-lint to v4.3.3
 - `gopkgs` command install path
 - Remove support for the non-LTS Ubuntu `eoan` release
+- Install Go from binary packages on Debian buster and Ubuntu xenial
 
 ## [1.3.1] - 2020-07-01
 

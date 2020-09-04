@@ -1,26 +1,9 @@
 ---
 
-- name: Debian
-  become: true
-  block:
+- name: Install from APT
+  include_tasks: install_apt_debian.yml
+  when: golang_package is defined
 
-    - name: Add backports repository
-      apt_repository:
-        repo: deb http://deb.debian.org/debian buster-backports main
-        state: present
-      when: ansible_distribution_release == 'buster'
-
-    - name: Install Golang
-      package:
-        name: "{{ golang_package }}"
-
-    - name: Symlink Go binaries
-      file:
-        state: link
-        src: "/usr/lib/go-{{ golang_version }}/bin/{{ item }}"
-        dest: "/usr/bin/{{ item }}"
-        owner: root
-        group: root
-      with_items:
-        - go
-        - gofmt
+- name: Install from binary package
+  include_tasks: install_binary.yml
+  when: golang_download_url is defined
