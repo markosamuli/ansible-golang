@@ -5,6 +5,7 @@
 ### Fixed
 
 - Go version check if the displayed version has only major.minor parts
+- Idempotence test when checking the shell profile scripts
 
 ### Changed
 
