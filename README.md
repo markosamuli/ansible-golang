@@ -23,12 +23,12 @@ Used for setting up my workstations in the following playbooks:
 
 ## Go version
 
-This role will install the Go version 1.13 from your package manager:
+This role will install the Go version 1.15 from your package manager:
 
-- [`go@1.13`][brew-go] Homebrew Formula on macOS
-- `golang-1.13` package from [golang-backports] PPA on Ubuntu
+- [`go@1.15`][brew-go] Homebrew Formula on macOS
+- `golang-1.15` package from [golang-backports] PPA on Ubuntu
 
-The role expects the package manager to provide minimum Go version 1.12.
+The role expects the package manager to provide minimum Go version 1.13.
 
 [brew-go]: https://formulae.brew.sh/formula/go
 [golang-backports]: https://launchpad.net/~longsleep/+archive/ubuntu/golang-backports
