@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixed
+
+- Go version check if the displayed version has only major.minor parts
+
 ### Changed
 
 - Install Go version 1.15

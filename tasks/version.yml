@@ -7,7 +7,7 @@
     - name: Get Go version
       shell: |
         set -o pipefail
-        go version | grep -o 'go\([1-9]*\.[1-9]*\.[1-9]*\)' | sed 's/go//'
+        go version | grep -o 'go\([1-9]*\.[1-9]*\(\.[1-9]*\)\?\)' | sed 's/go//'
       args:
         executable: /bin/bash
       register: go_version_result
