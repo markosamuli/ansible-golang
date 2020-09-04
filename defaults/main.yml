@@ -22,4 +22,4 @@ golang_packages:
   - name: golang.org/x/tools/cmd/stringer
   - name: golang.org/x/tools/cmd/guru
   - name: honnef.co/go/tools/cmd/staticcheck
-  - name: github.com/uudashr/gopkgs@v2
+  - name: github.com/uudashr/gopkgs/cmd/gopkgs@v2
