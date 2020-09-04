@@ -8,7 +8,6 @@
       file:
         path: "{{ golang_home }}/{{ golang_path }}"
         state: directory
-        recurse: true
         mode: "0755"
 
     - name: Configure .bashrc
