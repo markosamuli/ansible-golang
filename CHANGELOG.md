@@ -10,6 +10,7 @@
 
 - Install Go version 1.15
 - Role requires minimum Go version 1.13 to be installed
+- Upgrade pre-commit to v2.7.0
 
 ## [1.3.1] - 2020-07-01
 
