@@ -17,8 +17,8 @@
       set_fact:
         go_version: "{{ go_version_result.stdout }}"
 
-    - name: Require minimum Go version 1.12
+    - name: "Check minimum Go version is satisfied"
       assert:
         that:
-          - "go_version is version('1.12', '>=')"
-        msg: "Go version 1.12 is required"
+          - "go_version is version(golang_min_version, '>=')"
+        msg: "Go version {{ golang_min_version }} is required"
