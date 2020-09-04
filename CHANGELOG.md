@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Install Go version 1.15
+
 ## [1.3.1] - 2020-07-01
 
 ### Fixed

@@ -5,7 +5,7 @@
 golang_path: "go"
 
 # Go version to install
-golang_version: "1.13"
+golang_version: "1.15"
 
 # Set GO111MODULES=auto
 golang_modules: true
