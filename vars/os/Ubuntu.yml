@@ -1,6 +1,7 @@
 ---
 
-golang_package: "golang-{{ golang_version }}"
+golang_package_version: "{{ golang_version | regex_replace('^(\\d+\\.\\d+)(\\.\\d+)?$', '\\1') }}"
+golang_package: "golang-{{ golang_package_version }}"
 golang_repository: ppa:longsleep/golang-backports
 golang_apt_keyserver: keyserver.ubuntu.com
 golang_apt_key_id: 52B59B1571A79DBC054901C0F6BC817356A3D45E

@@ -1,3 +1,4 @@
 ---
 
-golang_package: "golang-{{ golang_version }}"
+golang_package_version: "{{ golang_version | regex_replace('^(\\d+\\.\\d+)(\\.\\d+)?$', '\\1') }}"
+golang_package: "golang-{{ golang_package_version }}"

@@ -1,13 +1,10 @@
 ---
-# tasks file for ansible-golang
-
-- name: Include OS-specific variables
-  include_vars: "os/{{ ansible_os_family }}.yml"
-  when: ansible_os_family == 'Darwin'
-
-- name: Include distribution variables
-  include_vars: "os/{{ ansible_distribution }}.yml"
-  when: ansible_os_family == 'Debian'
+- name: Load variables for the target system
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "os/{{ ansible_distribution }}/{{ ansible_distribution_release }}.yml"
+    - "os/{{ ansible_distribution }}.yml"
+    - "os/{{ ansible_os_family }}.yml"
 
 - name: User configuration
   include_tasks: user.yml

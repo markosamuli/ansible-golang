@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT=$(dirname "$DIR")
+TESTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT=$(dirname "${TESTS_DIR}")
 
-ROLE_NAME="$(basename "$PROJECT_ROOT")"
+ROLE_NAME="$(basename "${PROJECT_ROOT}")"
 TEST_HOME=/home/test
 
 # Detect Windows Subsystem for Linux
@@ -44,7 +44,7 @@ build() {
     local image=$1
     local image_name="${ROLE_NAME}-${image}"
     echo "*** Build image for ${image}"
-    docker build -t "${image_name}" "./tests/${image}"
+    docker build -t "${image_name}" "./tests/images/${image}"
 }
 
 # Start container in the background
@@ -74,11 +74,12 @@ trap finish EXIT
 
 detect_wsl
 
-cd "$DIR"
+cd "${TESTS_DIR}"
 
 images=("$@")
 if [ ${#images[@]} -eq 0 ]; then
-    images=(*/Dockerfile)
+    images=(images/*/Dockerfile)
+    images=("${images[@]/images\//}")
     images=("${images[@]/\/Dockerfile/}")
 fi
 

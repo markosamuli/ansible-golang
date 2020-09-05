@@ -17,27 +17,30 @@ ansible_version="<2.9.0"
 update_docker_image() {
     local docker_image=$1
     local docker_tag=$2
-    dir="${docker_tag}"
-    echo "*** Updating $dir/Dockerfile"
-    mkdir -p "$dir"
+    local target_dir
+    local target_file
+    target_dir="images/${docker_tag}"
+    target_file="${target_dir}/Dockerfile"
+    echo "*** Updating ${target_dir}/Dockerfile"
+    mkdir -p "${target_dir}"
     if test "$(uname)" = "Darwin"; then
         sed -E \
             -e 's!%%FROM%%!'"$docker_image:$docker_tag"'!g' \
             -e 's!%%USER%%!'"$user"'!g' \
             -e 's!%%REPOSITORY%%!'"$repository"'!g' \
             -e 's!%%ANSIBLE_VERSION%%!'"$ansible_version"'!g' \
-            "Dockerfile.template" >"$dir/Dockerfile"
+            "Dockerfile.template" >"${target_file}"
     else
         sed -r \
             -e 's!%%FROM%%!'"$docker_image:$docker_tag"'!g' \
             -e 's!%%USER%%!'"$user"'!g' \
             -e 's!%%REPOSITORY%%!'"$repository"'!g' \
             -e 's!%%ANSIBLE_VERSION%%!'"$ansible_version"'!g' \
-            "Dockerfile.template" >"$dir/Dockerfile"
+            "Dockerfile.template" >"${target_file}"
     fi
 }
 
-ubuntu_releases=(xenial bionic eoan)
+ubuntu_releases=(xenial bionic)
 for tag in "${ubuntu_releases[@]}"; do
     update_docker_image "ubuntu" "${tag}"
 done

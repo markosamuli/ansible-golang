@@ -5,7 +5,7 @@
 golang_path: "go"
 
 # Go version to install
-golang_version: "1.13"
+golang_version: "1.15.1"
 
 # Set GO111MODULES=auto
 golang_modules: true
@@ -22,4 +22,4 @@ golang_packages:
   - name: golang.org/x/tools/cmd/stringer
   - name: golang.org/x/tools/cmd/guru
   - name: honnef.co/go/tools/cmd/staticcheck
-  - name: github.com/uudashr/gopkgs@v2
+  - name: github.com/uudashr/gopkgs/cmd/gopkgs@v2

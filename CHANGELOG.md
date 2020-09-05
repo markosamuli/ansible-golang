@@ -1,5 +1,23 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- Go version check if the displayed version has only major.minor parts
+- Idempotence test when checking the shell profile scripts
+- Do not change Go workspace directory permissions recursively
+
+### Changed
+
+- Install Go version 1.15
+- Role requires minimum Go version 1.13 to be installed
+- Upgrade pre-commit to v2.7.0
+- Upgrade ansible-lint to v4.3.3
+- `gopkgs` command install path
+- Remove support for the non-LTS Ubuntu `eoan` release
+- Install Go from binary packages on Debian buster and Ubuntu xenial
+
 ## [1.3.1] - 2020-07-01
 
 ### Fixed

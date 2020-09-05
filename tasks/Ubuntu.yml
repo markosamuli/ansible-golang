@@ -1,35 +1,9 @@
 ---
 
-- name: Ubuntu
-  become: true
-  block:
+- name: Install from APT
+  include_tasks: install_apt_ubuntu.yml
+  when: golang_package is defined
 
-    - name: Remove outdated ubuntu-lxc/lxd-stable repository
-      apt_repository:
-        repo: 'ppa:ubuntu-lxc/lxd-stable'
-        state: absent
-
-    - name: Import GPG key
-      apt_key:
-        keyserver: "{{ golang_apt_keyserver }}"
-        id: "{{ golang_apt_key_id }}"
-
-    - name: Add golang repository
-      apt_repository:
-        repo: '{{ golang_repository }}'
-      when: golang_repository | default(false)
-
-    - name: Install Golang
-      package:
-        name: "{{ golang_package }}"
-
-    - name: Symlink Go binaries
-      file:
-        state: link
-        src: "/usr/lib/go-{{ golang_version }}/bin/{{ item }}"
-        dest: "/usr/bin/{{ item }}"
-        owner: root
-        group: root
-      with_items:
-        - go
-        - gofmt
+- name: Install from binary package
+  include_tasks: install_binary.yml
+  when: golang_download_url is defined

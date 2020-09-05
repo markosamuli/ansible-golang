@@ -1,0 +1,69 @@
+---
+- name: Check for an existing installation
+  become: true
+  stat:
+    path: "{{ golang_install_prefix }}/go-{{ golang_version }}"
+  register: golang_install_st
+
+- name: Install Go from binary package
+  become: true
+  when: not golang_install_st.stat.exists
+  block:
+
+    - name: Create temporary directory
+      tempfile:
+        state: directory
+        suffix: golang
+      register: golang_temp
+
+    - name: Download Go binary package
+      get_url:
+        url: "{{ golang_download_url }}"
+        dest: "{{ golang_temp.path }}/{{ golang_download_file }}"
+        mode: "0644"
+
+    - name: Extract Go binary package
+      unarchive:
+        src: "{{ golang_temp.path }}/{{ golang_download_file }}"
+        dest: "{{ golang_temp.path }}"
+        remote_src: yes
+        creates: "{{ golang_temp.path }}/go"
+        mode: "0755"
+
+    - name: Move Go installation
+      command: "mv {{ golang_temp.path }}/go {{ golang_install_prefix }}/go-{{ golang_version }}"
+      args:
+        creates: "{{ golang_install_prefix }}/go-{{ golang_version }}"
+
+    - name: Set binary permissions
+      file:
+        state: file
+        path: "{{ golang_install_prefix }}/go-{{ golang_version }}/bin/{{ item }}"
+        mode: "0755"
+      with_items:
+        - go
+        - gofmt
+
+    - name: Delete temporary directory
+      file:
+        path: "{{ golang_temp.path }}"
+        state: absent
+
+- name: Install Go on the system
+  become: true
+  block:
+
+    - name: Symlink Go installation directory
+      file:
+        state: link
+        src: "{{ golang_install_prefix }}/go-{{ golang_version }}"
+        dest: "{{ golang_install_prefix }}/go"
+
+    - name: Symlink Go binaries to /usr/local/bin
+      file:
+        state: link
+        src: "{{ golang_install_prefix }}/go-{{ golang_version }}/bin/{{ item }}"
+        dest: "{{ golang_install_prefix }}/bin/{{ item }}"
+      with_items:
+        - go
+        - gofmt

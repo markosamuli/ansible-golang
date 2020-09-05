@@ -16,26 +16,26 @@
   when: bashrc_stat.stat.exists and bashrc_stat.stat.islnk
 
 - name: Check whether .bashrc contains GOPATH
-  command: grep -qc 'export GOPATH=' "{{ bashrc_path }}"
+  command: grep -c 'export GOPATH=' "{{ bashrc_path }}"
   register: bashrc_gopath
   when: bashrc_stat.stat.exists
   check_mode: false
-  ignore_errors: true
   changed_when: false
+  failed_when: false
 
 - name: Add GOPATH to .bashrc
   lineinfile:
     dest: "{{ bashrc_path }}"
     regexp: 'export GOPATH='
     line: "export GOPATH=$HOME/{{ golang_path }}"
-  when: bashrc_stat.stat.exists and bashrc_gopath.rc == 1
+  when: bashrc_stat.stat.exists and bashrc_gopath.stdout == "0"
 
 - name: Add $GOPATH/bin to PATH in .bashrc
   lineinfile:
     dest: "{{ bashrc_path }}"
     regexp: 'export PATH=.*\$GOPATH/bin'
     line: "export PATH=$PATH:$GOPATH/bin"
-  when: bashrc_stat.stat.exists and bashrc_gopath.rc == 1
+  when: bashrc_stat.stat.exists and bashrc_gopath.stdout == "0"
 
 - name: Add GO111MODULES=auto to .bashrc
   lineinfile:
