@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## [2.0.0] - 2020-09-05
+
+### Breaking changes
+
+- Local development tools require Python 3.7 or newer
+- Installing Go 1.15 from APT packages is not supported on Debian buster and
+  Ubuntu xenial
 
 ### Fixed
 
@@ -86,6 +92,7 @@
 Initial version.
 
 [unreleased]: https://github.com/markosamuli/ansible-golang/commits/develop
+[2.0.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v2.0.0
 [1.3.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.3.0
 [1.2.1]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.2.1
 [1.2.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.2.0
