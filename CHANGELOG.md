@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased - 2020-09-10
+## [2.0.1] - 2020-09-1
 
 ### Added
 
@@ -107,6 +107,7 @@
 Initial version.
 
 [unreleased]: https://github.com/markosamuli/ansible-golang/commits/develop
+[2.0.1]: https://github.com/markosamuli/ansible-golang/releases/tag/v2.0.1
 [2.0.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v2.0.0
 [1.3.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.3.0
 [1.2.1]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.2.1
