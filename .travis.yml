@@ -24,6 +24,7 @@ addons:
     - shfmt
   homebrew:
     brewfile: Brewfile.travis
+    update: true
 
 cache:
   directories:
