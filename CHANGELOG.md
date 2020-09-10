@@ -2,9 +2,17 @@
 
 ## Unreleased - 2020-09-10
 
+### Added
+
+- Travis: Run builds on macOS 10.15 (Catalina) with Xcode 12
+
 ### Fixed
 
 - Install `@latest` packages
+
+### Removed
+
+- Travis: Do not run macOS 10.14 (Mojave) builds with Xcode 10.2.1
 
 ## [2.0.0] - 2020-09-05
 

@@ -122,28 +122,33 @@ jobs:
       os: linux
       dist: xenial
       env: ANSIBLE_VERSION='<2.8.0'
+
     - stage: test
       name: "Ubuntu 18.04 (Bionic) with Ansible 2.8"
       os: linux
       dist: bionic
       env: ANSIBLE_VERSION='<2.9.0'
+
     - stage: test
       name: "Ubuntu 18.04 (Bionic) with Ansible 2.9"
       os: linux
       dist: bionic
       env: ANSIBLE_VERSION='<2.10.0'
+
     - stage: test
       name: "macOS 10.13 (High Sierra) with Xcode 10.1"
       os: osx
       osx_image: xcode10.1
-    - stage: test
-      name: "macOS 10.14 (Mojave) with Xcode 10.2.1"
-      os: osx
-      osx_image: xcode10.2
+
     - stage: test
       name: "macOS 10.14 (Mojave) with Xcode 11.0"
       os: osx
       osx_image: xcode11
+
+    - stage: test
+      name: "macOS 10.15.5 (Catalina) with Xcode 12"
+      os: osx
+      osx_image: xcode12
 
 notifications:
   webhooks:
