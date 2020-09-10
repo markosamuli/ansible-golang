@@ -5,6 +5,7 @@
 ### Added
 
 - Travis: Run builds on macOS 10.15 (Catalina) with Xcode 12
+- Travis: Use `Brewfile.travis` to install build dependencies
 
 ### Fixed
 

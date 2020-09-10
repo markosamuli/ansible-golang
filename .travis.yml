@@ -23,9 +23,7 @@ addons:
   snaps:
     - shfmt
   homebrew:
-    packages:
-      - ansible
-    update: true
+    brewfile: Brewfile.travis
 
 cache:
   directories:
