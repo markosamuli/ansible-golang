@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased - 2020-09-10
+
+### Fixed
+
+- Install `@latest` packages
+
 ## [2.0.0] - 2020-09-05
 
 ### Breaking changes

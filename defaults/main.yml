@@ -15,11 +15,11 @@ golang_init_shell: true
 
 # Install Go packages
 golang_packages:
-  - name: github.com/kisielk/errcheck
-  - name: github.com/ofabry/go-callvis
-  - name: golang.org/x/lint
-  - name: golang.org/x/tools/cmd/goimports
-  - name: golang.org/x/tools/cmd/stringer
-  - name: golang.org/x/tools/cmd/guru
-  - name: honnef.co/go/tools/cmd/staticcheck
+  - name: github.com/kisielk/errcheck@latest
+  - name: github.com/ofabry/go-callvis@latest
+  - name: golang.org/x/lint@latest
+  - name: golang.org/x/tools/cmd/goimports@latest
+  - name: golang.org/x/tools/cmd/stringer@latest
+  - name: golang.org/x/tools/cmd/guru@latest
+  - name: honnef.co/go/tools/cmd/staticcheck@latest
   - name: github.com/uudashr/gopkgs/cmd/gopkgs@v2
