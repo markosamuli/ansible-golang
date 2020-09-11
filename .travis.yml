@@ -113,14 +113,6 @@ jobs:
 
     # Run tests
     - stage: test
-      name: "macOS 10.15.5 (Catalina) with Xcode 12"
-      os: osx
-      osx_image: xcode12
-      addons:
-        homebrew:
-          brewfile: Brewfile.travis
-
-    - stage: test
       name: "Ubuntu 20.04 LTS (Focal) with Ansible 2.9"
       os: linux
       dist: focal
@@ -133,14 +125,6 @@ jobs:
           packages:
             - python3-pip
             - python3-dev
-
-    - stage: test
-      name: "macOS 10.14 (Mojave) with Xcode 11.0"
-      os: osx
-      osx_image: xcode11
-      addons:
-        homebrew:
-          brewfile: Brewfile.travis
 
     - stage: test
       name: "Ubuntu 18.04 (Bionic) with Ansible 2.8"
@@ -167,9 +151,25 @@ jobs:
             - python-dev
 
     - stage: test
+      name: "macOS 10.15.5 (Catalina) with Xcode 12"
+      os: osx
+      osx_image: xcode12
+      addons:
+        homebrew:
+          brewfile: Brewfile.travis
+
+    - stage: test
       name: "macOS 10.15.5 (Catalina) with Xcode 11.6"
       os: osx
       osx_image: xcode11.6
+      addons:
+        homebrew:
+          brewfile: Brewfile.travis
+
+    - stage: test
+      name: "macOS 10.14 (Mojave) with Xcode 11.0"
+      os: osx
+      osx_image: xcode11
       addons:
         homebrew:
           brewfile: Brewfile.travis
