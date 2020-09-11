@@ -1,6 +1,13 @@
 # Changelog
 
-## [2.0.1] - 2020-09-1
+## [2.0.2] - 2020-09-11
+
+### Changed
+
+- Add macOS Catalina and Ubuntu 20.04 LTS into supported platforms in Ansible
+  Galaxy metadata
+
+## [2.0.1] - 2020-09-10
 
 ### Added
 
