@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.0.0] - 2022-04-15
+
+### Changed
+
+- Update to Go 1.18
+- Install [`shfmt`](https://github.com/mvdan/sh)
+- Remove deprecated `golang.org/x/lint` package
+- Do not use `go get -u` for installing packages
+- Update pre-commit hooks to the latest versions
+
+### Fixed
+
+- Use `go install` for installing packages
+
 ## [2.0.2] - 2020-09-11
 
 ### Changed
@@ -114,6 +128,8 @@
 Initial version.
 
 [unreleased]: https://github.com/markosamuli/ansible-golang/commits/develop
+[3.0.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v3.0.0
+[2.0.2]: https://github.com/markosamuli/ansible-golang/releases/tag/v2.0.2
 [2.0.1]: https://github.com/markosamuli/ansible-golang/releases/tag/v2.0.1
 [2.0.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v2.0.0
 [1.3.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v1.3.0
