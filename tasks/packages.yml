@@ -1,5 +1,4 @@
 ---
-
 - name: Install Go packages for the current user
   become: false
   environment:
@@ -7,17 +6,8 @@
     GOPATH: "{{ golang_home }}/{{ golang_path }}"
     GO111MODULE: "on"
   block:
-    - name: Install packages without version tags
-      command: "go get -u {{ item.name }}"
-      with_items: "{{ golang_packages }}"
-      register: go_get_result
-      changed_when:
-        - '"downloading" in go_get_result.stderr'
-        - go_get_result.rc != 2
-      when:
-        - '"@" not in item.name'
     - name: Install packages with major version tag
-      command: "go get {{ item.name }}"
+      command: "go install {{ item.name }}"
       with_items: "{{ golang_packages }}"
       register: go_get_result
       changed_when:

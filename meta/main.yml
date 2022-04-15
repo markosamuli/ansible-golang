@@ -7,11 +7,9 @@ galaxy_info:
   min_ansible_version: 2.7
   github_branch: master
   platforms:
-    - name: MacOSX
+    - name: macOS
       versions:
-        - 10.13
-        - 10.14
-        - 10.15
+        - "Monterey"
     - name: Ubuntu
       versions:
         - xenial

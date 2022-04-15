@@ -5,7 +5,7 @@
 golang_path: "go"
 
 # Go version to install
-golang_version: "1.15.1"
+golang_version: "1.18.1"
 
 # Set GO111MODULES=auto
 golang_modules: true
@@ -17,9 +17,9 @@ golang_init_shell: true
 golang_packages:
   - name: github.com/kisielk/errcheck@latest
   - name: github.com/ofabry/go-callvis@latest
-  - name: golang.org/x/lint@latest
   - name: golang.org/x/tools/cmd/goimports@latest
   - name: golang.org/x/tools/cmd/stringer@latest
   - name: golang.org/x/tools/cmd/guru@latest
   - name: honnef.co/go/tools/cmd/staticcheck@latest
   - name: github.com/uudashr/gopkgs/cmd/gopkgs@v2
+  - name: mvdan.cc/sh/v3/cmd/gosh@latest
