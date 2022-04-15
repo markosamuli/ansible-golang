@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.0.1] - 2022-04-15
+
+### Fixed
+
+- Install `shfmt` not `gosh`
+
 ## [3.0.0] - 2022-04-15
 
 ### Changed

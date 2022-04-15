@@ -22,4 +22,4 @@ golang_packages:
   - name: golang.org/x/tools/cmd/guru@latest
   - name: honnef.co/go/tools/cmd/staticcheck@latest
   - name: github.com/uudashr/gopkgs/cmd/gopkgs@v2
-  - name: mvdan.cc/sh/v3/cmd/gosh@latest
+  - name: mvdan.cc/sh/v3/cmd/shfmt@latest
