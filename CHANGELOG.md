@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.1.0] - 2022-04-16
+
+### Changed
+
+Add packages:
+
+- `github.com/ramya-rao-a/go-outline@latest`
+- `github.com/rogpeppe/godef@latest`
+
 ## [3.0.1] - 2022-04-15
 
 ### Fixed
@@ -134,6 +143,8 @@
 Initial version.
 
 [unreleased]: https://github.com/markosamuli/ansible-golang/commits/develop
+[3.1.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v3.1.0
+[3.0.1]: https://github.com/markosamuli/ansible-golang/releases/tag/v3.0.1
 [3.0.0]: https://github.com/markosamuli/ansible-golang/releases/tag/v3.0.0
 [2.0.2]: https://github.com/markosamuli/ansible-golang/releases/tag/v2.0.2
 [2.0.1]: https://github.com/markosamuli/ansible-golang/releases/tag/v2.0.1
