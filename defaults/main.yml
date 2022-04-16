@@ -21,5 +21,7 @@ golang_packages:
   - name: golang.org/x/tools/cmd/stringer@latest
   - name: golang.org/x/tools/cmd/guru@latest
   - name: honnef.co/go/tools/cmd/staticcheck@latest
-  - name: github.com/uudashr/gopkgs/cmd/gopkgs@v2
+  - name: github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest
   - name: mvdan.cc/sh/v3/cmd/shfmt@latest
+  - name: github.com/ramya-rao-a/go-outline@latest
+  - name: github.com/rogpeppe/godef@latest
